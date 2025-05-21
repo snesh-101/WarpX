@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capybara Game</title>
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="styles1.css" />
+</head>
+<body>
+  <div id="gameContainer" class="container">
+    <button id="startButton" class="startButton">Start Game</button>
+    <button id="musicButton" class="musicButton" style="display:none;">Mute</button>
+    
+    <div id="info" class="info" style="display:none;"></div>
+    
+    <div id="capybara" class="capybara dancing" style="display:none;">
+      <img src="assets/capybara.png" alt="Capybara" />
+    </div>
+
+    <audio id="bgMusic" src="assets/song.mp3" loop></audio>
+    <audio id="clickSound" src="assets/click-sound.mp3"></audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

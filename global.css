@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    user-select: none;
+    /* background-color: #af2a2a; */
+    background-image: url('assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.5s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  img {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+  
+  .hidden {
+    display: none !important;
+    visibility: hidden;
+  }
+  
+  

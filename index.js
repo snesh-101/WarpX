@@ -186,7 +186,7 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (event) => {
-  console.log("key pressed: "+event.key)
+  console.log("key pressed: "+ event.key)
   switch (event.key) {
     case 'd':
       keys.d.pressed = true

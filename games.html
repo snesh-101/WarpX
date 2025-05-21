@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choose Your Game - WarpX</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+
+  <h1>Select a Game to Play</h1>
+
+  <div style="display: flex; gap: 20px; margin-top: 30px;">
+    <button id="capybaraBtn" style="padding: 15px 30px; font-size: 18px;">Capybara</button>
+    <button id="platformerBtn" style="padding: 15px 30px; font-size: 18px;">Platformer</button>
+  </div>
+    
+  <script>
+    document.getElementById('capybaraBtn').addEventListener('click', () => {
+      // Redirect or load Capybara game
+      window.location.href = 'capybara.html'; 
+    });
+
+    document.getElementById('platformerBtn').addEventListener('click', () => {
+      // Redirect or load Platformer game
+      window.location.href = 'platformer.html'; 
+    });
+  </script>
+
+</body>
+</html>

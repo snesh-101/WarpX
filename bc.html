@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WarpX</title>
+   
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  </head>
+
+  <body>
+    <!-- Login Section -->
+    <div id="loginContainer">
+      <div id="message">
+        <h2>Welcome to WarpX!</h2>
+        <p id="tex">Continue logging in to play.</p>
+      </div>
+      <button id="loginBtn">Login with GitHub</button>
+    </div>
+
+    <!-- Game Section -->
+    <div id="gameContainer">
+      <canvas></canvas>
+    </div>
+
+    <script>
+      // Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyAGyFrDmyRBR9Cppc2ERtT3YCUyPGMeIt8",
+        authDomain: "warpx-b91dd.firebaseapp.com",
+        projectId: "warpx-b91dd",
+        storageBucket: "warpx-b91dd.appspot.com",
+        messagingSenderId: "577296584780",
+        appId: "1:577296584780:web:0a55557252b97eb864e4e9",
+        measurementId: "G-JE4BK9G0N0"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+
+      const auth = firebase.auth();
+
+     
+      auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .catch((error) => console.error('Persistence error:', error));
+
+      function loadScriptSequentially(scripts, index = 0) {
+        if (index >= scripts.length) return;
+        const script = document.createElement('script');
+        script.src = scripts[index];
+        script.onload = () => loadScriptSequentially(scripts, index + 1);
+        script.onerror = () => console.error(`Failed to load ${scripts[index]}`);
+        document.body.appendChild(script);
+      }
+
+      // Display game
+      function showGame() {
+        const loginContainer = document.getElementById('loginContainer');
+        const gameContainer = document.getElementById('gameContainer');
+        loginContainer.style.display = 'none';
+        gameContainer.style.display = 'block';
+        loadScriptSequentially([
+          './js/utils.js',
+          './js/classes/CollisionBlock.js',
+          './js/classes/Sprite.js',
+          './js/classes/Player.js',
+          './js/data/collisions.js',
+          'index.js'
+        ]);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const loginBtn = document.getElementById('loginBtn');
+
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            // Only show game once: rely on this observer instead of manual then()
+            showGame();
+          } else {
+            document.getElementById('loginContainer').style.display = 'flex';
+          }
+        });
+
+        loginBtn.addEventListener('click', () => {
+          const provider = new firebase.auth.GithubAuthProvider();
+          auth.signInWithPopup(provider)
+            // No .then here: onAuthStateChanged will handle showGame
+            .catch((error) => {
+              console.error('Login failed:', error);
+              alert('Login failed: ' + error.message);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

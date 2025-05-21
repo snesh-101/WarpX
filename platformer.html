@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WarpX Platformer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body, html {
+      margin: 0; padding: 0; overflow: hidden;
+      width: 100%; height: 100%;
+    }
+    #gameContainer {
+      width: 100vw; height: 100vh;
+    }
+    canvas {
+      display: block;
+      background: #000; /* for visibility */
+      width: 100%; height: 100%;
+    }
+  </style>
+</head>
+<body>
+   
+    <div>
+        <canvas></canvas>
+    </div>
+ 
+
+  <script src="./js/utils.js"></script>
+  <script src="./js/classes/CollisionBlock.js"></script>
+  <script src="./js/classes/Sprite.js"></script>
+  <script src="./js/classes/Player.js"></script>
+  <script src="./js/data/collisions.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>
